@@ -38,6 +38,10 @@ export function isString(value: any): boolean {
   return typeof value === 'string' || value instanceof String;
 }
 
+export function isStringArray(value: any): boolean {
+  return isArray(value) && value.every((item: any) => isString(item));
+}
+
 // TypedArrays
 
 export function isInt8Array(value: any): boolean {
