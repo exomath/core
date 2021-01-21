@@ -1,4 +1,4 @@
-import { isObject } from '.';
+import { isObject } from './index';
 
 export function hasOwnProperty(value: any, property: string): boolean {
   return isObject(value) && value.hasOwnProperty(property);

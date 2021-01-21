@@ -1,4 +1,4 @@
-import { assert, isUint8Array } from '.';
+import { assert, isUint8Array } from './index';
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
