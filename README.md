@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/exomath/images/master/logos/Exomath Square Logo.png" alt="Exomath" height="150" width="150">
+  <img src="https://raw.githubusercontent.com/exomath/images/master/logos/Exomath Logo, with Margin.svg" alt="Exomath" height="200">
 </p>
 <h1 align="center">Core</h1>
 <p align="center">Exomath core functions</p>
