@@ -1,6 +1,6 @@
 {
   "name": "@exomath/core",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Exomath core functions",
   "main": "index.js",
   "module": "lib/index.js",
