@@ -6,6 +6,10 @@ export function isBoolean(value: any): boolean {
   return typeof value === 'boolean' || value instanceof Boolean;
 }
 
+export function isInfinity(value: any): boolean {
+  return isNumber(value) && !isFinite(value);
+}
+
 export function isInteger(value: any): boolean {
   return isNumber(value) && Number.isInteger(value);
 }
