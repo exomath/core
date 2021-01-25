@@ -7,7 +7,7 @@ export function isBoolean(value: any): boolean {
 }
 
 export function isInfinity(value: any): boolean {
-  return isNumber(value) && !isFinite(value);
+  return isNumber(value) && !isNaN(value) && !isFinite(value);
 }
 
 export function isInteger(value: any): boolean {
