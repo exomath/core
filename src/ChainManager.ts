@@ -1,3 +1,5 @@
+import { assert } from './index';
+
 export interface IChainLink<T> {
   prev: T | null;
   next: T | null;
@@ -29,14 +31,18 @@ export abstract class ChainManager<T extends IChainLink<T>> {
   }
 
   public insert(value: T, prevValue: T | null = null) {
-    if (this.has(value)) {
-      throw new Error(`${TYPE}: "value" is already managed by this chain`);
-    }
+    assert(
+      !this.has(value),
+      '"value" is already managed by this chain',
+      TYPE + '.insert'
+    );
     
     if (this.count === 0) {
-      if (prevValue) {
-        throw new Error(`${TYPE}: "value" is the first, so "prevValue" should be null or omitted`);
-      }
+      assert(
+        prevValue === null,
+        '"value" is the first, so "prevValue" should be null or omitted',
+        TYPE + '.insert'
+      );
 
       this.first = value;
       this.last = value;
@@ -53,9 +59,11 @@ export abstract class ChainManager<T extends IChainLink<T>> {
 
         this.first = value;
       } else {
-        if (!this.has(prevValue)) {
-          throw new Error(`${TYPE}: "value" is not the first, so "prevValue" should already be managed by this chain`);
-        }
+        assert(
+          this.has(prevValue),
+          '"value" is not the first, so "prevValue" should already be managed by this chain',
+          TYPE + '.insert'
+        );
 
         value.prev = prevValue;
 
@@ -84,9 +92,11 @@ export abstract class ChainManager<T extends IChainLink<T>> {
   }
 
   public remove(value: T) {
-    if (!this.has(value)) {
-      throw new Error(`${TYPE}: "value" is not managed by this chain`);
-    }
+    assert(
+      this.has(value),
+      '"value" is not managed by this chain',
+      TYPE + '.remove'
+    );
 
     if (this.count === 1) { // value is first and last
       if (value.prev !== null) {
