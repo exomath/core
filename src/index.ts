@@ -1,5 +1,5 @@
 export * from './assert';
-export * from './ChainManager';
+export * from './LinkedList';
 export * from './encoding';
 export * from './has';
 export * from './is';
