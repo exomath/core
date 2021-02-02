@@ -8,42 +8,36 @@ export interface ILinkedListNode<T> {
 const messenger = 'LinkedList';
 
 export class LinkedList<T extends ILinkedListNode<T>> {
-  private map: Map<T, any> = new Map();
+  private list: Set<T> = new Set();
   public tail: T | null;
 
   protected constructor(
-    public head: T | null = null,
-    data: any = null
+    public head: T | null = null
   ) {
     this.tail = head;
     
     if (!isNull(head)) {
-      this.map.set(head, data);
+      this.list.add(head);
     }
   }
 
-  public forEach(callback: (node: T, data?: any) => void) {
+  public forEach(callback: (node: T) => void) {
     if (this.count > 0) {
       let node: T | null = this.head as T;
-      let data: any = this.map.get(node);
 
       do {
-        callback(node, data);
+        callback(node);
 
         node = node.next;
       } while (!isNull(node));
     }
   }
 
-  public get(node: T): any {
-    return this.map.get(node);
-  }
-
   public has(node: T): boolean {
-    return this.map.has(node);
+    return this.list.has(node);
   }
 
-  public insert(node: T, prevNode: T | null = null, data: any = null) {
+  public insert(node: T, prevNode: T | null = null) {
     assert(
       !this.has(node),
       '"node" is already managed by this linked list',
@@ -97,11 +91,11 @@ export class LinkedList<T extends ILinkedListNode<T>> {
       }
     }
 
-    this.map.set(node, data);
+    this.list.add(node);
   }
 
   public get count() {
-    return this.map.size;
+    return this.list.size;
   }
 
   public remove(node: T) {
@@ -148,6 +142,6 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     node.prev = null;
     node.next = null;
 
-    this.map.delete(node);
+    this.list.delete(node);
   }
 }
