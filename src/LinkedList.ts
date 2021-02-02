@@ -12,9 +12,14 @@ export class LinkedList<T extends ILinkedListNode<T>> {
   public tail: T | null;
 
   protected constructor(
-    public head: T | null = null
+    public head: T | null = null,
+    data: any = null
   ) {
-    this.tail = this.head;
+    this.tail = head;
+    
+    if (!isNull(head)) {
+      this.map.set(head, data);
+    }
   }
 
   public forEach(callback: (node: T, data?: any) => void) {
