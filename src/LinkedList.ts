@@ -144,4 +144,10 @@ export class LinkedList<T extends ILinkedListNode<T>> {
 
     this.list.delete(node);
   }
+
+  public static new<T extends ILinkedListNode<T>>(): LinkedList<T> {
+    const list: LinkedList<T> = new LinkedList();
+
+    return list;
+  }
 }
