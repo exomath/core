@@ -146,6 +146,6 @@ export class LinkedList<T extends ILinkedListNode<T>> {
   }
 
   public static new<T extends ILinkedListNode<T>>(): LinkedList<T> {
-    return new LinkedList<T>();
+    return new LinkedList();
   }
 }
