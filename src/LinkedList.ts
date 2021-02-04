@@ -1,18 +1,18 @@
 import { assert, isNull } from './index';
 
-export interface ILinkedListNode {
-  prev: ILinkedListNode | null;
-  next: ILinkedListNode | null;
+export interface ILinkedListNode<T> {
+  prev: T | null;
+  next: T | null;
 }
 
 const messenger = 'LinkedList';
 
-export class LinkedList {
-  private list: Set<ILinkedListNode> = new Set();
-  public tail: ILinkedListNode | null;
+export class LinkedList<T extends ILinkedListNode<T>> {
+  private list: Set<T> = new Set();
+  public tail: T | null;
 
   protected constructor(
-    public head: ILinkedListNode | null = null
+    public head: T | null = null
   ) {
     this.tail = head;
     
@@ -21,9 +21,9 @@ export class LinkedList {
     }
   }
 
-  public forEach(callback: (node: ILinkedListNode) => void) {
+  public forEach(callback: (node: T) => void) {
     if (this.count > 0) {
-      let node: ILinkedListNode | null = this.head as ILinkedListNode;
+      let node: T | null = this.head as T;
 
       do {
         callback(node);
@@ -33,11 +33,11 @@ export class LinkedList {
     }
   }
 
-  public has(node: ILinkedListNode): boolean {
+  public has(node: T): boolean {
     return this.list.has(node);
   }
 
-  public insert(node: ILinkedListNode, prevNode: ILinkedListNode | null = null) {
+  public insert(node: T, prevNode: T | null = null) {
     assert(
       !this.has(node),
       '"node" is already managed by this linked list',
@@ -55,7 +55,7 @@ export class LinkedList {
       this.tail = node;
     } else {
       if (prevNode === null) { // node is the new head
-        node.next = this.head as ILinkedListNode;
+        node.next = this.head as T;
         node.prev = node.next.prev; // to preserve any existing upwards link beyond the head	
 
         if (node.prev !== null) {	
@@ -84,7 +84,7 @@ export class LinkedList {
           
           this.tail = node;
         } else {
-          node.next = node.prev.next as ILinkedListNode;
+          node.next = node.prev.next as T;
           node.next.prev = node;
           node.prev.next = node;
         }
@@ -98,7 +98,7 @@ export class LinkedList {
     return this.list.size;
   }
 
-  public remove(node: ILinkedListNode) {
+  public remove(node: T) {
     assert(
       this.has(node),
       '"node" is not managed by this linked list',
@@ -122,7 +122,7 @@ export class LinkedList {
           node.prev.next = node.next; // to preserve any existing downwards link from beyond the head
         }
 
-        (node.next as ILinkedListNode).prev = node.prev; // to preserve any existing upwards link beyond the head
+        (node.next as T).prev = node.prev; // to preserve any existing upwards link beyond the head
 
         this.head = node.next;
       } else if (node === this.tail) {
@@ -130,12 +130,12 @@ export class LinkedList {
           node.next.prev = node.prev; // to preserve any existing upwards link from beyond the tail
         }
 
-        (node.prev as ILinkedListNode).next = node.next; // to preserve any existing downwards link beyond the tail
+        (node.prev as T).next = node.next; // to preserve any existing downwards link beyond the tail
 
         this.tail = node.prev;
       } else {
-        (node.prev as ILinkedListNode).next = node.next;
-        (node.next as ILinkedListNode).prev = node.prev;
+        (node.prev as T).next = node.next;
+        (node.next as T).prev = node.prev;
       }
     }
 
@@ -145,7 +145,7 @@ export class LinkedList {
     this.list.delete(node);
   }
 
-  public static new(): LinkedList {
-    return new LinkedList();
+  public static new<T extends ILinkedListNode<T>>(): LinkedList<T> {
+    return new LinkedList<T>();
   }
 }
