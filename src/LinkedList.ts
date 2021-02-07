@@ -8,16 +8,16 @@ export interface ILinkedListNode<T> {
 const messenger = 'LinkedList';
 
 export class LinkedList<T extends ILinkedListNode<T>> {
-  private list: Set<T> = new Set();
+  private collection: Set<T> = new Set();
   public tail: T | null;
 
-  protected constructor(
+  public constructor(
     public head: T | null = null
   ) {
     this.tail = head;
     
     if (!isNull(head)) {
-      this.list.add(head);
+      this.collection.add(head);
     }
   }
 
@@ -34,7 +34,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
   }
 
   public has(node: T): boolean {
-    return this.list.has(node);
+    return this.collection.has(node);
   }
 
   public insert(node: T, prevNode: T | null = null) {
@@ -91,11 +91,11 @@ export class LinkedList<T extends ILinkedListNode<T>> {
       }
     }
 
-    this.list.add(node);
+    this.collection.add(node);
   }
 
   public get count() {
-    return this.list.size;
+    return this.collection.size;
   }
 
   public remove(node: T) {
@@ -142,10 +142,6 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     node.prev = null;
     node.next = null;
 
-    this.list.delete(node);
-  }
-
-  public static new<T extends ILinkedListNode<T>>(): LinkedList<T> {
-    return new LinkedList();
+    this.collection.delete(node);
   }
 }

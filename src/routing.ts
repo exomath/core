@@ -1,7 +1,7 @@
 import { assert } from './assert';
 
 export class SingleRouteMap<T> extends Map<string, T> {
-  private constructor(initializer?: [string, T][]) {
+  public constructor(initializer?: [string, T][]) {
     initializer ? super(initializer) : super();
   }
 
@@ -12,14 +12,10 @@ export class SingleRouteMap<T> extends Map<string, T> {
 
     return value as T;
   }
-
-  public static new<T>(initializer?: [string, T][]): SingleRouteMap<T> {
-    return new SingleRouteMap<T>(initializer);
-  }
 }
 
 export class DoubleRouteMap<T> extends Map<string, Map<string, T>> {
-  private constructor(initializer?: [string, [string, T][]][]) {
+  public constructor(initializer?: [string, [string, T][]][]) {
     initializer
       ? super(initializer.map(route => {
         return [route[0], new Map(route[1])];
@@ -35,9 +31,5 @@ export class DoubleRouteMap<T> extends Map<string, Map<string, T>> {
     assert(route.has(key2), '"key2" does not exist in this map', 'DoubleRouteMap');
 
     return route.get(key2) as T;
-  }
-
-  public static new<T>(initializer?: [string, [string, T][]][]): DoubleRouteMap<T> {
-    return new DoubleRouteMap<T>(initializer);
   }
 }
