@@ -145,7 +145,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     this.registry.delete(node);
   }
 
-  private [Symbol.iterator](): Iterator<T> {
+  public [Symbol.iterator](): Iterator<T> {
     let current = this.head;
 
     return {
