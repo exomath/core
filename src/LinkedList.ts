@@ -21,6 +21,30 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     }
   }
 
+  public down() {
+    const list = this;
+
+    return {
+      [Symbol.iterator](): Iterator<T> {
+        let current = list.head;
+    
+        return {
+          next(): IteratorResult<T> {
+            const result = current;
+    
+            if (isNull(result)) {
+              return { done: true, value: result };
+            }
+    
+            current = (current as T).next;
+    
+            return { done: false, value: result };
+          }
+        }
+      }
+    }
+  }
+
   public forEach(callback: (node: T) => void) {
     if (this.count > 0) {
       let node: T | null = this.head as T;
@@ -145,20 +169,26 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     this.registry.delete(node);
   }
 
-  public [Symbol.iterator](): Iterator<T> {
-    let current = this.head;
+  public up() {
+    const list = this;
 
     return {
-      next(): IteratorResult<T> {
-        const result = current;
-
-        if (isNull(result)) {
-          return { done: true, value: result };
+      [Symbol.iterator](): Iterator<T> {
+        let current = list.tail;
+    
+        return {
+          next(): IteratorResult<T> {
+            const result = current;
+    
+            if (isNull(result)) {
+              return { done: true, value: result };
+            }
+    
+            current = (current as T).prev;
+    
+            return { done: false, value: result };
+          }
         }
-
-        current = (current as T).next;
-
-        return { done: false, value: result };
       }
     }
   }
