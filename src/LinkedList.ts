@@ -8,7 +8,7 @@ export interface ILinkedListNode<T> {
 const messenger = 'LinkedList';
 
 export class LinkedList<T extends ILinkedListNode<T>> {
-  private collection: Set<T> = new Set();
+  private registry: Set<T> = new Set();
   public tail: T | null;
 
   public constructor(
@@ -17,7 +17,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     this.tail = head;
     
     if (!isNull(head)) {
-      this.collection.add(head);
+      this.registry.add(head);
     }
   }
 
@@ -34,7 +34,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
   }
 
   public has(node: T): boolean {
-    return this.collection.has(node);
+    return this.registry.has(node);
   }
 
   public insert(node: T, prevNode: T | null = null) {
@@ -91,11 +91,11 @@ export class LinkedList<T extends ILinkedListNode<T>> {
       }
     }
 
-    this.collection.add(node);
+    this.registry.add(node);
   }
 
   public get count() {
-    return this.collection.size;
+    return this.registry.size;
   }
 
   public remove(node: T) {
@@ -142,6 +142,24 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     node.prev = null;
     node.next = null;
 
-    this.collection.delete(node);
+    this.registry.delete(node);
+  }
+
+  private [Symbol.iterator](): Iterator<T> {
+    let current = this.head;
+
+    return {
+      next(): IteratorResult<T> {
+        const result = current;
+
+        if (isNull(result)) {
+          return { done: true, value: result };
+        }
+
+        current = (current as T).next;
+
+        return { done: false, value: result };
+      }
+    }
   }
 }
