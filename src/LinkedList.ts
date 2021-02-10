@@ -19,7 +19,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
   ) {
     this.tail = head;
     
-    if (!isNull(head)) {
+    if (head) {
       this.registry.add(head);
     }
   }
@@ -35,7 +35,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
           next(): IteratorResult<T> {
             const result = current;
     
-            if (isNull(result)) {
+            if (!result) {
               return { done: true, value: result };
             }
     
@@ -56,7 +56,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
         callback(node);
 
         node = node.next;
-      } while (!isNull(node));
+      } while (node);
     }
   }
 
@@ -81,7 +81,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
       this.head = node;
       this.tail = node;
     } else {
-      if (isNull(prev)) { // node is the new head
+      if (!prev) { // "node" is the new head
         node.next = this.head as T;
         node.prev = node.next.prev; // to preserve any existing upwards link beyond the head	
 
@@ -101,7 +101,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
 
         node.prev = prev;
 
-        if (node.prev === this.tail) { // node is the new tail
+        if (node.prev === this.tail) { // "node" is the new tail
           if (node.prev.next !== null) {	
             node.next = node.prev.next; // to preserve any existing downwards link beyond the tail	
             node.next.prev = node; // to preserve any existing upwards link from beyond the tail	
@@ -132,7 +132,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
       messenger + '.remove'
     );
 
-    if (this.count === 1) { // node is head and tail
+    if (this.count === 1) { // "node" is head and tail
       if (node.prev !== null) {
         node.prev.next = node.next; // to preserve any existing downwards link from beyond the head
       }
@@ -183,7 +183,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
           next(): IteratorResult<T> {
             const result = current;
     
-            if (isNull(result)) {
+            if (!result) {
               return { done: true, value: result };
             }
     
