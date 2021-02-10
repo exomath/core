@@ -1,7 +1,10 @@
-import { isObject } from './index';
+import {
+  isNull,
+  isObject
+} from './index';
 
 export function hasOwnProperty(value: any, property: string): boolean {
-  return isObject(value) && value.hasOwnProperty(property);
+  return isObject(value) && !isNull(value) && value.hasOwnProperty(property);
 }
 
 export function hasType(value: any, type: string): boolean {
