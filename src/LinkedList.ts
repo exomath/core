@@ -1,4 +1,7 @@
-import { assert, isNull } from './index';
+import {
+  assert,
+  isNull
+} from './index';
 
 export interface ILinkedListNode<T> {
   prev: T | null;
@@ -61,7 +64,7 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     return this.registry.has(node);
   }
 
-  public insert(node: T, prevNode: T | null = null) {
+  public insert(node: T, prev: T | null = null) {
     assert(
       !this.has(node),
       '"node" is already managed by this linked list',
@@ -70,15 +73,15 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     
     if (this.count === 0) {
       assert(
-        prevNode === null,
-        '"node" is the head, so "prevNode" should be null or omitted',
+        isNull(prev),
+        '"node" is the head, so "prev" should be null or omitted',
         messenger + '.insert'
       );
 
       this.head = node;
       this.tail = node;
     } else {
-      if (prevNode === null) { // node is the new head
+      if (isNull(prev)) { // node is the new head
         node.next = this.head as T;
         node.prev = node.next.prev; // to preserve any existing upwards link beyond the head	
 
@@ -91,12 +94,12 @@ export class LinkedList<T extends ILinkedListNode<T>> {
         this.head = node;
       } else {
         assert(
-          this.has(prevNode),
-          '"node" is not the head, so "prevNode" should already be managed by this linked list',
+          this.has(prev),
+          '"node" is not the head, so "prev" should already be managed by this linked list',
           messenger + '.insert'
         );
 
-        node.prev = prevNode;
+        node.prev = prev;
 
         if (node.prev === this.tail) { // node is the new tail
           if (node.prev.next !== null) {	
