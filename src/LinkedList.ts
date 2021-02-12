@@ -172,6 +172,13 @@ export class LinkedList<T extends ILinkedListNode<T>> {
     this.registry.delete(node);
   }
 
+  public replace(node: T, replacement: T) {
+    const prev = node.prev;
+
+    this.remove(node);
+    this.insert(replacement, prev);
+  }
+
   public up() {
     const list = this;
 
