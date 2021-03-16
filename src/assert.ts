@@ -7,3 +7,11 @@ export function assert(assertion: boolean, message: string | (() => string), mes
 
   return true;
 }
+
+export function assertStaticClass(messenger?: string) {
+  assert(
+    false,
+    'This is a static class and should not be instantiated',
+    messenger
+  );
+}
