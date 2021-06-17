@@ -1,16 +1,15 @@
-import repl from 'repl';
-import * as lib from '../lib';
+'use strict';
 
-const server = repl.start();
+const repl = require('repl').start();
 
-Object.assign(server.context, lib);
+Object.assign(repl.context, require('esm')(module)('../lib/index'));
 
-Object.defineProperty(server.context, 'exit', {
+Object.defineProperty(repl.context, 'exit', {
   enumerable: true,
   get: () => process.exit(0)
 });
 
-Object.defineProperty(server.context, 'quit', {
+Object.defineProperty(repl.context, 'quit', {
   enumerable: true,
-  get: () => process.exit(0)
+  get: () => repl.context.exit
 });
