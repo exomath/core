@@ -1,8 +1,9 @@
 {
   "include": ["./src"],
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "lib": ["es6", "es2017", "dom"],
+    "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "outDir": "./lib",
     "skipLibCheck": true,
