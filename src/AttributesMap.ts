@@ -1,7 +1,5 @@
-import {
-  assert,
-  isString
-} from './index';
+import { assert } from './assert';
+import { isString } from './is';
 
 const messenger = 'AttributesMap';
 

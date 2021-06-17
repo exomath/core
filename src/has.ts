@@ -1,7 +1,7 @@
 import {
   isNull,
   isObject
-} from './index';
+} from './is';
 
 export function hasOwnProperty(value: any, property: string): boolean {
   return isObject(value) && !isNull(value) && value.hasOwnProperty(property);

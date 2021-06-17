@@ -1,8 +1,6 @@
-'use strict';
-
 const repl = require('repl').start();
 
-Object.assign(repl.context, require('esm')(module)('../lib/index'));
+Object.assign(repl.context, require('../dist/index'));
 
 Object.defineProperty(repl.context, 'exit', {
   enumerable: true,

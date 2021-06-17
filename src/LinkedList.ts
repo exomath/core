@@ -1,7 +1,5 @@
-import {
-  assert,
-  isNull
-} from './index';
+import { assert } from './assert';
+import { isNull } from './is';
 
 export interface ILinkedListNode<T> {
   prev: T | null;

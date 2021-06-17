@@ -1,0 +1,57 @@
+import commonjs from '@rollup/plugin-commonjs';
+import filesize from 'rollup-plugin-filesize';
+import replace from '@rollup/plugin-replace';
+import typescript from 'rollup-plugin-typescript2';
+import visualizer from 'rollup-plugin-visualizer';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+export default {
+  input: 'src/index.ts',
+
+  output: {
+    file: 'dist/index.js',
+    format: 'cjs'
+  },
+
+  plugins: [
+    // Transpile TypeScript to JavaScript
+    typescript({
+      clean: true
+    }),
+
+    // Locate modules from node_modules
+    nodeResolve({
+      browser: true
+    }),
+
+    // Convert CommonJS to ESM like:
+    //   const foo = require('foo'); ==> import foo from 'foo';
+    commonjs(),
+
+    // Replace targeted strings in files like:
+    //   'process.env.NODE_ENV' ==> process.env.NODE_ENV
+    //
+    // The above example is done because 'process' is not valid client-side.
+    replace({ 
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      preventAssignment: true
+    }),
+
+    // Display the file size
+    filesize(),
+
+    // Create visualizations for the bundle
+    visualizer({
+      filename: `./visualizer-sunburst.html`,
+      template: 'sunburst'
+    }),
+    visualizer({
+      filename: `./visualizer-treemap.html`,
+      template: 'treemap'
+    }),
+    visualizer({
+      filename: `./visualizer-network.html`,
+      template: 'network'
+    })
+  ]
+};

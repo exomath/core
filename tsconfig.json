@@ -1,11 +1,11 @@
 {
-  "include": ["./src"],
+  "include": ["src"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
-    "outDir": "./lib",
+    "outDir": "lib",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,

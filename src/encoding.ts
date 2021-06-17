@@ -1,8 +1,9 @@
+import { assert } from './assert';
+
 import {
-  assert,
   isString,
   isUint8Array
-} from './index';
+} from './is';
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
