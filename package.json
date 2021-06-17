@@ -1,25 +1,27 @@
 {
   "name": "@exomath/core",
   "version": "0.15.0",
-  "description": "Exomath core functions",
-  "main": "index.js",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "index.js",
-    "lib"
-  ],
+  "description": "Exomath core library",
   "repository": "https://github.com/exomath/core",
   "author": "Jake McKown <jbmckown@gmail.com>",
   "license": "MIT",
+  "type": "module",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">=14",
+    "npm": "use-yarn",
+    "yarn": ">=1.22"
+  },
   "scripts": {
     "build": "rimraf lib && tsc",
     "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha 'test/unit/**/*.test.js'",
-    "repl": "node bin/repl.js"
+    "repl": "node --es-module-specifier-resolution=node bin/repl.js"
   },
-  "dependencies": {
-    "esm": "^3.2.25"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^4.3.0",
     "mocha": "^8.3.0",

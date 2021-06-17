@@ -1,15 +1,16 @@
-'use strict';
+import repl from 'repl';
+import * as lib from '../lib';
 
-const repl = require('repl').start();
+const server = repl.start();
 
-Object.assign(repl.context, require('../index'));
+Object.assign(server.context, lib);
 
-Object.defineProperty(repl.context, 'exit', {
+Object.defineProperty(server.context, 'exit', {
   enumerable: true,
   get: () => process.exit(0)
 });
 
-Object.defineProperty(repl.context, 'quit', {
+Object.defineProperty(server.context, 'quit', {
   enumerable: true,
-  get: () => repl.context.exit
+  get: () => process.exit(0)
 });
