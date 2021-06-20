@@ -19,8 +19,8 @@
     "yarn": ">=1.22"
   },
   "scripts": {
-    "build": "rimraf lib && tsc && rollup -c",
-    "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha 'test/unit/**/*.test.js'",
+    "build": "rimraf lib && tsc && rollup --config",
+    "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary 'test/unit/**/*.test.js'",
     "repl": "node bin/repl.js"
   },
   "dependencies": {},
