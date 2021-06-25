@@ -28,16 +28,16 @@ import {
   isTypedArray*/
 } from './is';
 
-describe('isArray', () => {
+describe('isArray(value)', () => {
   it('Should be a function', () => {
     expect(isArray).to.be.a('function');
   });
 
-  it('Should should return true when "value" is of type any[]', () => {
+  it('Should should return true when "value" is type any[]', () => {
     expect(isArray([1, '2', true])).to.equal(true);
   });
 
-  it('Should should return false when "value" is not of type any[]', () => {
+  it('Should should return false when "value" is not type any[]', () => {
     expect(isArray(1)).to.equal(false);
   });
 });
