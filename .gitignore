@@ -4,5 +4,4 @@ dist
 lib
 node_modules
 
-*.bat
-*.log
+visualizer-*.html
