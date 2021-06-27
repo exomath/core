@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "rimraf dist lib && tsc && rollup --config",
-    "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha 'lib/**/*.test.js'",
+    "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha lib/**/*.test.js",
     "repl": "node bin/repl.js"
   },
   "dependencies": {},
