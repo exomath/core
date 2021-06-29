@@ -11,6 +11,7 @@
   "files": [
     "dist",
     "lib",
+    ".eslintrc.json",
     "tsconfig.json"
   ],
   "engines": {
@@ -20,7 +21,8 @@
   },
   "scripts": {
     "build": "rimraf dist lib && tsc && rollup --config",
-    "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha lib/**/*.test.js",
+    "lint": "eslint src/**",
+    "test": "yarn lint && nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha lib/**/*.test.js",
     "repl": "node bin/repl.js"
   },
   "dependencies": {},
@@ -30,7 +32,10 @@
     "@rollup/plugin-replace": "^2.4.2",
     "@types/chai": "^4.2.19",
     "@types/mocha": "^8.2.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
     "chai": "^4.3.4",
+    "eslint": "^7.29.0",
     "esm": "^3.2.25",
     "mocha": "^8.3.2",
     "nyc": "^15.1.0",
