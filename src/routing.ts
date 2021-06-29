@@ -17,9 +17,7 @@ export class SingleRouteMap<T> extends Map<string, T> {
 export class DoubleRouteMap<T> extends Map<string, Map<string, T>> {
   public constructor(initializer?: [string, [string, T][]][]) {
     initializer
-      ? super(initializer.map(route => {
-        return [route[0], new Map(route[1])];
-      }))
+      ? super(initializer.map(route => [route[0], new Map(route[1])]))
       : super();
   }
 
