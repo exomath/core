@@ -1,6 +1,6 @@
 {
   "name": "@exomath/core",
-  "version": "0.16.4",
+  "version": "0.17.0",
   "description": "Exomath core library",
   "repository": "https://github.com/exomath/core",
   "author": "Jake McKown <jbmckown@gmail.com>",
