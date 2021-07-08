@@ -107,11 +107,11 @@ describe('isIntegerArray(value)', () => {
     expect(isIntegerArray([1, 2, 3])).to.equal(true);
   });
 
-  it('Should return false when "value" is not type number[] or a number[] where each array entry is not an integer', () => {
+  it('Should return false when "value" is not type number[]', () => {
     expect(isIntegerArray([1, '2', true])).to.equal(false);
   });
 
-  it('Should return false when "value" is not type number[] or a number[] where each array entry is not an integer', () => {
+  it('Should return false when "value" is type number[] but not every array entry is an integer', () => {
     expect(isIntegerArray([1, 2.2, 3.3])).to.equal(false);
   });
 });
