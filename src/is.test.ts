@@ -56,10 +56,14 @@ describe('isBoolean(value)', () => {
 
   it('Should return true when "value" is type boolean', () => {
     expect(isBoolean(true)).to.equal(true);
+    expect(isBoolean(false)).to.equal(true);
   });
 
   it('Should return false when "value" is not type boolean', () => {
     expect(isBoolean('This is a string')).to.equal(false);
+    expect(isBoolean(100)).to.equal(false);
+    expect(isBoolean([])).to.equal(false);
+    expect(isBoolean({})).to.equal(false);
   });
 });
 
