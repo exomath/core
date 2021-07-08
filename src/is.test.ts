@@ -98,7 +98,7 @@ describe('isInteger(value)', () => {
 });
 
 // isIntegerArray(value)
-describe('isInteger(value)', () => {
+describe('isIntegerArray(value)', () => {
   it('Should be a function', () => {
     expect(isIntegerArray).to.be.a('function');
   });
