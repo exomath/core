@@ -5,11 +5,9 @@
   "repository": "https://github.com/exomath/core",
   "author": "Jake McKown <jbmckown@gmail.com>",
   "license": "MIT",
-  "main": "dist/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "dist",
     "lib",
     ".eslintrc.json",
     "tsconfig.json"
@@ -20,10 +18,12 @@
     "yarn": ">=1.22"
   },
   "scripts": {
-    "build": "rimraf dist lib && tsc && rollup --config",
+    "build:ts": "rimraf lib && tsc",
+    "build:js": "rimraf dist && rollup --config",
+    "build": "yarn lint && yarn build:ts && yarn build:js",
     "lint": "eslint src/**",
-    "test": "yarn lint && nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha lib/**/*.test.js",
-    "repl": "node bin/repl.js"
+    "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary --require esm mocha lib/**/*.test.js",
+    "repl": "sirv dist --port 3000"
   },
   "dependencies": {},
   "devDependencies": {
@@ -41,9 +41,11 @@
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.52.0",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-filesize": "^9.1.1",
     "rollup-plugin-typescript2": "^0.30.0",
     "rollup-plugin-visualizer": "^5.5.0",
+    "sirv-cli": "^1.0.12",
     "typescript": "^4.1.5"
   }
 }

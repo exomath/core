@@ -104,7 +104,7 @@ export function isUintArray(value: any): value is UintArray {
 
 export type FloatArray = Float32Array | Float64Array;
 
-export function isFloatArray(value: any): value is Float32Array | Float64Array {
+export function isFloatArray(value: any): value is FloatArray {
   return isFloat32Array(value)
       || isFloat64Array(value);
 }
