@@ -1,24 +1,19 @@
 import commonjs from '@rollup/plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
 import replace from '@rollup/plugin-replace';
-import typescript from 'rollup-plugin-typescript2';
 import visualizer from 'rollup-plugin-visualizer';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default {
-  input: 'src/index.ts',
+  input: 'lib/index.js',
 
   output: {
-    file: 'dist/index.js',
-    format: 'cjs'
+    dir: 'dist',
+    format: 'esm'
   },
 
   plugins: [
-    // Transpile TypeScript to JavaScript
-    typescript({
-      clean: true
-    }),
-
     // Locate modules from node_modules
     nodeResolve({
       browser: true
@@ -35,6 +30,13 @@ export default {
     replace({ 
       'process.env.NODE_ENV': JSON.stringify('production'),
       preventAssignment: true
+    }),
+
+    // Copy files and folders
+    copy({
+      targets: [
+        { src: 'repl.html', dest: 'dist', rename: 'index.html' }
+      ]
     }),
 
     // Display the file size
