@@ -1,5 +1,4 @@
 import commonjs from '@rollup/plugin-commonjs';
-import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
 import replace from '@rollup/plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
@@ -9,7 +8,7 @@ export default {
   input: 'lib/index.js',
 
   output: {
-    dir: 'dist',
+    file: 'repl/index.js',
     format: 'esm'
   },
 
@@ -30,13 +29,6 @@ export default {
     replace({ 
       'process.env.NODE_ENV': JSON.stringify('production'),
       preventAssignment: true
-    }),
-
-    // Copy files and folders
-    copy({
-      targets: [
-        { src: 'repl.html', dest: 'dist', rename: 'index.html' }
-      ]
     }),
 
     // Display the file size

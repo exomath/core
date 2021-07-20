@@ -1,0 +1,31 @@
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 3rem;
+  font-family: sans-serif;
+  font-size: 24px;
+  text-align: center;
+}
+
+code {
+  padding: 0.25rem;
+  background-color: #F5F5F5;
+  border-radius: 0.25rem;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+li {
+  padding-bottom: 0.5rem;
+}
