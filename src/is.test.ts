@@ -91,6 +91,7 @@ describe('isInfinity(value)', () => {
   });
 
   it('Should return false when "value" is not Infinity', () => {
+    expect(isInfinity(Number.MAX_VALUE)).to.equal(false);
     expect(isInfinity('This is a string')).to.equal(false);
     expect(isInfinity(100)).to.equal(false);
     expect(isInfinity(undefined)).to.equal(false);
