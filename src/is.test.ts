@@ -110,7 +110,7 @@ describe('isInteger(value)', () => {
     expect(isInteger).to.be.a('function');
   });
 
-  it('Should return true when "value" is an Integer', () => {
+  it('Should return true when "value" is an integer', () => {
     expect(isInteger(0)).to.equal(true);
     expect(isInteger(100)).to.equal(true);
     expect(isInteger(100.00)).to.equal(true);
