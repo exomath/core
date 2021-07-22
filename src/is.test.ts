@@ -242,7 +242,7 @@ describe('isNumber(value)', () => {
     expect(isNumber(0)).to.equal(true);
   });
 
-  it('Should return false when "value" is not a Number', () => {
+  it('Should return false when "value" is not type number', () => {
     expect(isNumber('This is a String')).to.equal(false);
     expect(isNumber(undefined)).to.equal(false);
     expect(isNumber(null)).to.equal(false);
