@@ -220,7 +220,7 @@ describe('isObject(value)', () => {
     expect(isObject(null)).to.equal(true);
   });
 
-  it('Should return false when "value" is not type any{}', () => {
+  it('Should return false when "value" is not type object', () => {
     expect(isObject('This is a string')).to.equal(false);
     expect(isObject(100)).to.equal(false);
     expect(isObject(undefined)).to.equal(false);
