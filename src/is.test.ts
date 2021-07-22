@@ -116,7 +116,7 @@ describe('isInteger(value)', () => {
     expect(isInteger(100.00)).to.equal(true);
   });
 
-  it('Should return false when "value" is not an Integer', () => {
+  it('Should return false when "value" is not an integer', () => {
     expect(isInteger('This is a String')).to.equal(false);
     expect(isInteger(100.11)).to.equal(false);
     expect(isInteger(undefined)).to.equal(false);
