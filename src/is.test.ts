@@ -290,7 +290,7 @@ describe('isString(value)', () => {
     expect(isString('This is a String')).to.equal(true);
   });
 
-  it('Should return false when "value" is not a String', () => {
+  it('Should return false when "value" is not type string', () => {
     expect(isString(100)).to.equal(false);
     expect(isString(undefined)).to.equal(false);
     expect(isString(null)).to.equal(false);
