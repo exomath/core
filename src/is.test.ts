@@ -286,7 +286,7 @@ describe('isString(value)', () => {
     expect(isString).to.be.a('function');
   });
 
-  it('Should return true when "value" is a String', () => {
+  it('Should return true when "value" is type string', () => {
     expect(isString('This is a String')).to.equal(true);
   });
 
