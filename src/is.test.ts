@@ -154,7 +154,7 @@ describe('isIntegerArray(value)', () => {
     expect(isIntegerArray()).to.equal(false);
   });
 
-  it('Should return false when "value" is type number[] but not every array entry is an integer', () => {
+  it('Should return false when "value" is type number[] but not every element is an integer', () => {
     expect(isIntegerArray([1.1, 2.2, 3.3])).to.equal(false);
     expect(isIntegerArray([1, 2.2, 3.3])).to.equal(false);
     expect(isIntegerArray([1, 2, 3.3])).to.equal(false);
