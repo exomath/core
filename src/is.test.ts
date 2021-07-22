@@ -236,7 +236,7 @@ describe('isNumber(value)', () => {
     expect(isNumber).to.be.a('function');
   });
 
-  it('Should return true when "value" is a Number', () => {
+  it('Should return true when "value" is type number', () => {
     expect(isNumber(100)).to.equal(true);
     expect(isNumber(100.25)).to.equal(true);
     expect(isNumber(0)).to.equal(true);
