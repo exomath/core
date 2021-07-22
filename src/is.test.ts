@@ -212,7 +212,7 @@ describe('isObject(value)', () => {
     expect(isObject).to.be.a('function');
   });
 
-  it('Should return true when "value" is type any{}', () => {
+  it('Should return true when "value" is type object', () => {
     expect(isObject({})).to.equal(true);
     expect(isObject({a:1, b:2, c:3})).to.equal(true);
     expect(isObject({a:'String', b:true, c:[], d:{}})).to.equal(true);
