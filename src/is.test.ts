@@ -135,7 +135,7 @@ describe('isIntegerArray(value)', () => {
     expect(isIntegerArray).to.be.a('function');
   });
 
-  it('Should return true when "value" is type number[] and each array entry is an integer', () => {
+  it('Should return true when "value" is type number[] and each element is an integer', () => {
     expect(isIntegerArray([0, 0, 0])).to.equal(true);
     expect(isIntegerArray([1, 2, 3])).to.equal(true);
     expect(isIntegerArray([0.00, 1.00, 2.00, 3.00])).to.equal(true);
